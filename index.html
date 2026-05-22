@@ -1,0 +1,238 @@
+html<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concurso CNSC DIAN 2676 - Estudio y Simulacro</title>
+    <style>
+        :root {
+            --primary: #002f6c;
+            --secondary: #ffcd00;
+            --dark: #333333;
+            --light: #f4f6f9;
+            --success: #28a745;
+            --danger: #dc3545;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--secondary);
+        }
+        nav {
+            background: #111;
+            padding: 10px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: var(--secondary);
+        }
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 5px;
+        }
+        .question {
+            background: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--primary);
+            border-radius: 4px;
+        }
+        .options label {
+            display: block;
+            margin: 8px 0;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .options label:hover {
+            background: #f0f4f8;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background: #001f4d;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            font-weight: bold;
+            border-radius: 4px;
+            display: none;
+        }
+        .correct { background-color: #d4edda; color: var(--success); }
+        .incorrect { background-color: #f8d7da; color: var(--danger); }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: var(--primary);
+            color: white;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Plataforma de Apoyo: Concurso DIAN 2676</h1>
+        <p>Espacio de organización, normatividad y simulacros interactivos</p>
+    </header>
+
+    <nav>
+        <a href="#generalidades">Generalidades</a>
+        <a href="#simulacro">Simulacro Interactivos</a>
+        <a href="#documentos">Mis Documentos</a>
+    </nav>
+
+    <div class="container">
+        
+        <!-- Generalidades -->
+        <section id="generalidades" class="card">
+            <h2>Generalidades del Proceso</h2>
+            <ul>
+                <li><strong>Entidad:</strong> CNSC / DIAN</li>
+                <li><strong>Concurso:</strong> Proceso de Selección 2676</li>
+                <li><strong>Metodología:</strong> Pruebas escritas de Juicio Situacional [1].</li>
+            </ul>
+        </section>
+
+        <!-- Simulacro -->
+        <section id="simulacro" class="card">
+            <h2>Simulacro de Prueba Escrita</h2>
+            <p>Responde a las situaciones basadas en el contexto del servicio público y la DIAN:</p>
+            
+            <form id="quizForm">
+                <!-- Pregunta 1 -->
+                <div class="question">
+                    <p><strong>1. Un contribuyente presenta una actitud agresiva en la ventanilla porque afirma que su declaración fue mal liquidada por la plataforma. Ante esto, usted debe:</strong></p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="A"> A) Solicitar de inmediato el retiro del ciudadano mediante el personal de seguridad.</label>
+                        <label><input type="radio" name="q1" value="B"> B) Escuchar activamente, mantener la calma y explicar el procedimiento legal para interponer un recurso.</label>
+                        <label><input type="radio" name="q1" value="C"> C) Discutir con el ciudadano defendiendo la estabilidad técnica de los sistemas de la DIAN.</label>
+                    </div>
+                    <div id="res-q1" class="result"></div>
+                </div>
+
+                <!-- Pregunta 2 -->
+                <div class="question">
+                    <p><strong>2. De acuerdo con la Constitución Política de Colombia, el principio que obliga a las entidades públicas a coordinar sus actuaciones para el adecuado cumplimiento de los fines del Estado se conoce como:</strong></p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="A"> A) Coordinación y colaboración armónica.</label>
+                        <label><input type="radio" name="q2" value="B"> B) Descentralización administrativa.</label>
+                        <label><input type="radio" name="q2" value="C"> C) Discrecionalidad técnica.</label>
+                    </div>
+                    <div id="res-q2" class="result"></div>
+                </div>
+
+                <button type="button" class="btn" onclick="evaluarSimulacro()">Calificar Simulacro</button>
+            </form>
+            
+            <div id="totalScore" style="margin-top: 20px; font-size: 18px; font-weight: bold; color: var(--primary);"></div>
+        </section>
+
+        <!-- Carga de Archivos -->
+        <section id="documentos" class="card">
+            <h2>Mis Documentos de Estudio</h2>
+            <p>Carga temporal de guías y leyes durante tu sesión de estudio:</p>
+            <input type="file" id="fileInput" multiple><br><br>
+            <ul id="fileList"></ul>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 - Herramienta de Estudio Personal - Concurso DIAN</p>
+    </footer>
+
+    <script>
+        // Lógica del Simulacro
+        function evaluarSimulacro() {
+            // Respuestas correctas
+            const respuestas = { q1: "B", q2: "A" };
+            let aciertos = 0;
+            let totalPreguntas = Object.keys(respuestas).length;
+
+            for (let q in respuestas) {
+                const seleccionado = document.querySelector(`input[name="${q}"]:checked`);
+                const divResultado = document.getElementById(`res-${q}`);
+                
+                divResultado.style.display = "block";
+                
+                if (seleccionado) {
+                    if (seleccionado.value === respuestas[q]) {
+                        divResultado.textContent = "¡Correcto! Aplica la competencia de orientación al ciudadano o principio constitucional.";
+                        divResultado.className = "result correct";
+                        aciertos++;
+                    } else {
+                        divResultado.textContent = `Incorrecto. La respuesta correcta era la ${respuestas[q]}.`;
+                        divResultado.className = "result incorrect";
+                    }
+                } else {
+                    divResultado.textContent = "No respondiste esta pregunta.";
+                    divResultado.className = "result incorrect";
+                }
+            }
+
+            document.getElementById("totalScore").textContent = `Resultado final: ${aciertos} de ${totalPreguntas} correctas.`;
+        }
+
+        // Lógica de archivos temporales
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+
+        fileInput.addEventListener('change', (e) => {
+            const files = e.target.files;
+            for (let i = 0; i < files.length; i++) {
+                const li = document.createElement('li');
+                li.innerHTML = `📄 <strong>${files[i].name}</strong> (Cargado en navegador)`;
+                li.style.margin = "5px 0";
+                fileList.appendChild(li);
+            }
+        });
+    </script>
+
+</body>
+</html>
